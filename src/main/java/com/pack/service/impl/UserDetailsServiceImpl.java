@@ -22,6 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		
 		Optional<User> user = 
 				userRepository.findByMailId(username);
+	
 		return user.map(UserDetailsImpl::new).get();
 	}
 }
