@@ -14,6 +14,8 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.pack.util.PathUtil;
+
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -37,9 +39,9 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.csrf()
 		.disable()
 		.authorizeRequests()
-		.antMatchers("/login")
+		.antMatchers(PathUtil.LOGIN_PATH)
 		.permitAll()
-		.antMatchers("/create")
+		.antMatchers(PathUtil.CREAT_PATH)
 		.permitAll()
 		.antMatchers("/user/**")
 		.hasAnyRole("USER")

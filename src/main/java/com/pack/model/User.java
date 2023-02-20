@@ -70,8 +70,19 @@ public class User {
 		this.type = type;
 		this.activation = activation;
 	}
+	
+	public User(String id) {
+		super();
+		this.id = id;
+	}
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", username=" + username + ", mailId=" + mailId + ", password="
+				+ password + ", type=" + type + ", activation=" + activation + "]";
+	}
+	
 }

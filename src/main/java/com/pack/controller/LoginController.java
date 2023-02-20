@@ -37,8 +37,7 @@ public class LoginController {
 	@PostMapping("/login")
 	public ResponseEntity<StatusModel> generateToken(@RequestBody JWTRequest jwtRequest){
 		try {
-			
-			
+				
 			authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(jwtRequest.getUserName(), jwtRequest.getPassword()));
 			UserDetails userDetails = userDetailsService.loadUserByUsername(jwtRequest.getUserName());
