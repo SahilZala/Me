@@ -1,4 +1,5 @@
 package com.pack.model;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -8,11 +9,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
 	@Id
 	private String id;
+	@NotBlank(message="Name is mandatory")
 	private String name;
 	@Indexed(unique = true)
+	@NotBlank(message="Username is mandatory")
 	private String username;
 	@Indexed(unique = true)
+	@NotBlank(message="Mail-id is mandatory")
 	private String mailId;
+	@NotBlank(message="Password is mandatory")
 	private String password;
 	private String type;
 	private boolean activation;
