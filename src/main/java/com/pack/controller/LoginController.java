@@ -36,7 +36,6 @@ public class LoginController {
 
 	@PostMapping("/login")
 	public ResponseEntity<StatusModel> generateToken(@RequestBody JWTRequest jwtRequest){
-		try {
 				
 			authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(jwtRequest.getUserName(), jwtRequest.getPassword()));
@@ -45,15 +44,5 @@ public class LoginController {
 			
 			return new ResponseEntity<>(new StatusModel(LocalDateTime.now().toString(),HttpStatus.OK,"no error","/login",
 					new JWTResponse(token,userDetails.getAuthorities().toArray()[0].toString())),HttpStatus.OK);
-			
-		}
-		catch(UsernameNotFoundException ex) {
-			System.out.println(ex);
-			return new ResponseEntity<>(new StatusModel(LocalDateTime.now().toString(),HttpStatus.FORBIDDEN,ex.getMessage(),"/login","no data"),HttpStatus.FORBIDDEN);
-		}
-		catch(RuntimeException ex) {
-			System.out.println(ex);
-			return new ResponseEntity<>(new StatusModel(LocalDateTime.now().toString(),HttpStatus.BAD_REQUEST,ex.getMessage(),"/login","no data"),HttpStatus.BAD_REQUEST);
-		}
 	}
 }
