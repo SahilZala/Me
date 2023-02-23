@@ -22,7 +22,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 		
 	@ExceptionHandler({DuplicateUserException.class,
 		UserNotFoundException.class,
-		InternalAuthenticationServiceException.class})
+		InternalAuthenticationServiceException.class,RuntimeException.class})
 	public ResponseEntity<StatusModel> handleUserRelatedFoundException(
 			Exception ex,
 			WebRequest request){

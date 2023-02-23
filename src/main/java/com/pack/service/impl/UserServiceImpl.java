@@ -23,8 +23,8 @@ public class UserServiceImpl implements UserService{
 		if(u.isEmpty()) {
 			throw new UserNotFoundException("user not found");
 		}
-		
-		return u.get();
+		else
+			return u.get();
 	}
 	@Override
 	public User createNewUser(User user) throws DuplicateUserException {
@@ -55,6 +55,16 @@ public class UserServiceImpl implements UserService{
 		}
 		
 		return u.get();
+	}
+	@Override
+	public User findByUserId(String userId) throws UserNotFoundException{
+		Optional<User> u = userRepo.findById(userId);
+		
+		if(u.isEmpty()) {
+			throw new UserNotFoundException("user not found");
+		}
+		else
+			return u.get();
 	}
 	
 	

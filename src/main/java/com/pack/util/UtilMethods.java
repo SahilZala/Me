@@ -5,6 +5,7 @@ import java.util.UUID;
 public class UtilMethods {
 	
 	public static final String generateRandomeNumber() {
-		return UUID.randomUUID().toString();
+		
+		return String.valueOf(Math.abs(UUID.randomUUID().getMostSignificantBits())).substring(0,11);
 	}
 }
