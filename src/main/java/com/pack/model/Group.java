@@ -1,5 +1,7 @@
 package com.pack.model;
 
+import java.util.List;
+
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
 public class Group {
@@ -9,6 +11,8 @@ public class Group {
 	@DBRef
 	private User groupCreatedById;
 	private boolean activation;
+	@DBRef
+	private List<User> groupMemberList;
 	
 	public Group() {
 		super();
@@ -21,6 +25,23 @@ public class Group {
 		this.creationDate = creationDate;
 		this.groupCreatedById = groupCreatedById;
 		this.activation = activation;
+	}
+	
+	public Group(String id, String groupName, String creationDate, User groupCreatedById, boolean activation,
+			List<User> groupMemberList) {
+		super();
+		this.id = id;
+		this.groupName = groupName;
+		this.creationDate = creationDate;
+		this.groupCreatedById = groupCreatedById;
+		this.activation = activation;
+		this.groupMemberList = groupMemberList;
+	}
+	public List<User> getGroupMemberList() {
+		return groupMemberList;
+	}
+	public void setGroupMemberList(List<User> groupMemberList) {
+		this.groupMemberList = groupMemberList;
 	}
 	public String getId() {
 		return id;
