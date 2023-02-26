@@ -10,6 +10,7 @@ public interface GroupService {
 	public List<Group> findGroupByCreatorId(String id);
 	public Group findByGroupId(String id);
 	public Group updateGroup(Group g);
+	public List<Group> findAllGroupOfUser(String id);
 	
 	
 }

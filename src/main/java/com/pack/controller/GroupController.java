@@ -55,4 +55,13 @@ public class GroupController {
 				data.get("groupId"),
 				req.getHeader("Authorization").substring(7)),HttpStatus.OK);
 	}
+	
+	@GetMapping(PathUtil.GET_GROUP_OF_USER)
+	public ResponseEntity<List<Group>> getGroupListByToken(HttpServletRequest req)
+	{
+		return new ResponseEntity<>(
+				groupDao.getAllGroupOfUser(
+						req.getHeader("Authorization").substring(7)),
+				HttpStatus.OK);
+	}
 }

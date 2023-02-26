@@ -11,4 +11,7 @@ public interface GroupRepository extends MongoRepository<Group, String>{
 	
 	@Query("{groupCreatedById: {$ref: 'user',$id: '?0'}}")
 	List<Group> findGroupByCreaterId(String id);
+	
+	@Query("{groupMemberList: {$ref: 'user',$id: '?0'}}")
+	List<Group> findAllGroupOfUser(String id);
 }
