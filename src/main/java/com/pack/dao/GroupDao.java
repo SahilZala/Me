@@ -11,4 +11,5 @@ public interface GroupDao {
 	Group makeMemberOfGroup(String memberId,String groupId,String token);
 	List<Group> getGroupListByToken(String token);
 	List<Group> getAllGroupOfUser(String token);
+	List<Group> getAllGroupOfNotUser(String token);
 }

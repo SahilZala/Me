@@ -14,4 +14,8 @@ public interface GroupRepository extends MongoRepository<Group, String>{
 	
 	@Query("{groupMemberList: {$ref: 'user',$id: '?0'}}")
 	List<Group> findAllGroupOfUser(String id);
+	
+	@Query("{'groupMemberList': {$ne: {$ref: 'user',$id: '?0'}}}")
+	List<Group> findAllGroupNotOfUser(String id);
+	
 }

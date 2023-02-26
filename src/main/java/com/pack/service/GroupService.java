@@ -11,6 +11,6 @@ public interface GroupService {
 	public Group findByGroupId(String id);
 	public Group updateGroup(Group g);
 	public List<Group> findAllGroupOfUser(String id);
-	
+	public List<Group> findAllGroupOfNotUser(String id);
 	
 }
