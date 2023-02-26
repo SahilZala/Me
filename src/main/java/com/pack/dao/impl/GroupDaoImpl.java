@@ -81,5 +81,18 @@ public class GroupDaoImpl implements GroupDao{
 		else
 			throw new RuntimeException("MemberId is already present in group");
 	}
+
+	@Override
+	public List<Group> getGroupListByToken(String token) {
+		return groupService.findGroupByCreatorId(
+				userService.findByEmailId(jwtUtil.extractUsername(token)).getId());
+	}
+
+	@Override
+	public List<Group> getAllGroupOfUser(String token) {
+		return groupService.findAllGroupOfUser(userService
+				.findByEmailId(
+						jwtUtil.extractUsername(token)).getId());
+	}
 	
 }

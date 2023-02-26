@@ -9,4 +9,6 @@ public interface GroupDao {
 	List<Group> getAllGroupList();
 	List<Group> getGroupListByCreatorId(String id);
 	Group makeMemberOfGroup(String memberId,String groupId,String token);
+	List<Group> getGroupListByToken(String token);
+	List<Group> getAllGroupOfUser(String token);
 }
