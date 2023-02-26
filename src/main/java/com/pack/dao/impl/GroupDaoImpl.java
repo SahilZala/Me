@@ -94,5 +94,12 @@ public class GroupDaoImpl implements GroupDao{
 				.findByEmailId(
 						jwtUtil.extractUsername(token)).getId());
 	}
+
+	@Override
+	public List<Group> getAllGroupOfNotUser(String token) {
+		return groupService.findAllGroupOfNotUser(userService
+				.findByEmailId(
+						jwtUtil.extractUsername(token)).getId());
+	}
 	
 }

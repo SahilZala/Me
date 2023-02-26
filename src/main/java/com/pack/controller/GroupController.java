@@ -64,4 +64,14 @@ public class GroupController {
 						req.getHeader("Authorization").substring(7)),
 				HttpStatus.OK);
 	}
+	
+	@GetMapping(PathUtil.GET_GROUP_NOT_USER)
+	public ResponseEntity<List<Group>> getAllUserNotGroup(HttpServletRequest req)
+	{
+		return new ResponseEntity<>(
+				groupDao.getAllGroupOfNotUser(
+						req.getHeader("Authorization").substring(7)),
+				HttpStatus.OK);
+	}
+	
 }

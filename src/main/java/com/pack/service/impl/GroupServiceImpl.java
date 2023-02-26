@@ -52,6 +52,11 @@ public class GroupServiceImpl implements GroupService{
 		
 		return groupRepo.findAllGroupOfUser(id);
 	}
+
+	@Override
+	public List<Group> findAllGroupOfNotUser(String id) {
+		return groupRepo.findAllGroupNotOfUser(id);
+	}
 	
 	
 	
