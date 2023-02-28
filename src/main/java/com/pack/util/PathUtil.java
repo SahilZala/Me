@@ -9,4 +9,5 @@ public class PathUtil {
 	public static final String MAKE_MEMBER = "/user/group/make_member";
 	public static final String GET_GROUP_OF_USER = "/user/group/my";
 	public static final String GET_GROUP_NOT_USER = "/user/group/not_my";
+	public static final String PUSH_JOIN_REQUEST = "/user/group/push_join_request";
 }

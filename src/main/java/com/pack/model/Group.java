@@ -3,7 +3,8 @@ package com.pack.model;
 import java.util.List;
 
 import org.springframework.data.mongodb.core.mapping.DBRef;
-
+import org.springframework.data.mongodb.core.mapping.Document;
+@Document
 public class Group {
 	private String id;
 	private String groupName;
