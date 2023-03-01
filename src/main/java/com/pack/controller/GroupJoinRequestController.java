@@ -1,5 +1,6 @@
 package com.pack.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +33,15 @@ public class GroupJoinRequestController {
 		
 		return new ResponseEntity<>( groupJoinRequestDao.pushJoiningRequest(
 				gid.get("gid"), 
+				req.getHeader("Authorization").substring(7)),
+				HttpStatus.OK);
+	}
+	
+	
+	@GetMapping(PathUtil.GET_GROUP_ALL_REQUEST)
+	public ResponseEntity<List<GroupJoinRequest>> getMyRequest(HttpServletRequest req)
+	{
+		return new ResponseEntity<>(groupJoinRequestDao.getGroupAllRequest(
 				req.getHeader("Authorization").substring(7)),
 				HttpStatus.OK);
 	}
