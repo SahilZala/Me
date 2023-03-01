@@ -1,5 +1,7 @@
 package com.pack.dao.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,5 +55,16 @@ public class GroupJoinRequestDaoImpl implements GroupJoinRequestDao{
 		
 		return groupJoinRequestService
 				.pushJoiningRequest(groupJoinRequest);
+		
 	}
+
+	@Override
+	public List<GroupJoinRequest> getGroupAllRequest(String token) {
+		
+		return groupJoinRequestService.getGroupAllRequest(
+				userService.findByEmailId(
+						jwtUtil.extractUsername(token)).getId());
+	}
+	
+	
 }

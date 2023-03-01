@@ -1,5 +1,7 @@
 package com.pack.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +22,11 @@ public class GroupJoinRequestServiceImpl implements GroupJoinRequestService {
 		GroupJoinRequest g = null;
 		g = groupJoinRequestRepository.save(groupJoinRequest);	
 		return g;
+	}
+
+	@Override
+	public List<GroupJoinRequest> getGroupAllRequest(String id) {
+		
+		return groupJoinRequestRepository.getAllGroupRequest(id);
 	}
 }
