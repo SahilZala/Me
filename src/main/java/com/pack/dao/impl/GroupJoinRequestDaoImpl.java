@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pack.dao.GroupDao;
 import com.pack.dao.GroupJoinRequestDao;
 import com.pack.model.Group;
 import com.pack.model.GroupJoinRequest;
@@ -30,6 +31,9 @@ public class GroupJoinRequestDaoImpl implements GroupJoinRequestDao{
 	
 	@Autowired
 	GroupService groupService;
+	
+	@Autowired
+	GroupDao groupDao;
 	
 	@Override
 	public GroupJoinRequest pushJoiningRequest(
@@ -64,6 +68,20 @@ public class GroupJoinRequestDaoImpl implements GroupJoinRequestDao{
 		return groupJoinRequestService.getGroupAllRequest(
 				userService.findByEmailId(
 						jwtUtil.extractUsername(token)).getId());
+	}
+
+	@Override
+	public GroupJoinRequest approveRequest(String requestId) {
+		GroupJoinRequest gjr = groupJoinRequestService.findByRequestId(requestId);
+		gjr.approve();
+		
+		return groupJoinRequestService.pushJoiningRequest(gjr);
+	}
+
+	@Override
+	public GroupJoinRequest cancelRequest(String reqestId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

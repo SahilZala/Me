@@ -29,4 +29,9 @@ public class GroupJoinRequestServiceImpl implements GroupJoinRequestService {
 		
 		return groupJoinRequestRepository.getAllGroupRequest(id);
 	}
+
+	@Override
+	public GroupJoinRequest findByRequestId(String requestId) {
+		return groupJoinRequestRepository.findById(requestId).get();
+	}
 }

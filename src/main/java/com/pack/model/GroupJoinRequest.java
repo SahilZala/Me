@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.pack.util.GroupJoinRequestStatus;
+
 @Document
 public class GroupJoinRequest {
 	@Id
@@ -77,4 +79,13 @@ public class GroupJoinRequest {
 	public GroupJoinRequest() {
 		super();
 	}
+	
+	public void approve()
+	{
+		this.setStatus(GroupJoinRequestStatus.APPROVE);
+	}
+	public void cancel() {
+		this.setStatus(GroupJoinRequestStatus.CANCEL);
+	}
+	
 }
