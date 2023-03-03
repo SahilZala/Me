@@ -12,4 +12,5 @@ public interface GroupDao {
 	List<Group> getGroupListByToken(String token);
 	List<Group> getAllGroupOfUser(String token);
 	List<Group> getAllGroupOfNotUser(String token);
+	Group findByGroupId(String id);
 }

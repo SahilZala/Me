@@ -101,5 +101,10 @@ public class GroupDaoImpl implements GroupDao{
 				.findByEmailId(
 						jwtUtil.extractUsername(token)).getId());
 	}
+
+	@Override
+	public Group findByGroupId(String id) {
+		return groupService.findByGroupId(id);
+	}
 	
 }

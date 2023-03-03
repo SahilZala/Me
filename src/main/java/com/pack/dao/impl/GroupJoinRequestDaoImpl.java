@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pack.dao.GroupDao;
 import com.pack.dao.GroupJoinRequestDao;
 import com.pack.model.Group;
 import com.pack.model.GroupJoinRequest;
 import com.pack.model.User;
 import com.pack.service.GroupJoinRequestService;
-import com.pack.service.GroupService;
 import com.pack.service.UserService;
 import com.pack.util.GroupJoinRequestStatus;
 import com.pack.util.JWTUtil;
@@ -29,7 +29,7 @@ public class GroupJoinRequestDaoImpl implements GroupJoinRequestDao{
 	UserService userService;
 	
 	@Autowired
-	GroupService groupService;
+	GroupDao groupDao;
 	
 	@Override
 	public GroupJoinRequest pushJoiningRequest(
@@ -37,7 +37,7 @@ public class GroupJoinRequestDaoImpl implements GroupJoinRequestDao{
 			String token) {
 		
 		GroupJoinRequest groupJoinRequest = new GroupJoinRequest();
-		Group g = groupService.findByGroupId(gid);		
+		Group g = groupDao.findByGroupId(gid);		
 		String userName = jwtUtil.extractUsername(token);
 		User u = userService.findByEmailId(userName);
 		
@@ -57,14 +57,24 @@ public class GroupJoinRequestDaoImpl implements GroupJoinRequestDao{
 				.pushJoiningRequest(groupJoinRequest);
 		
 	}
-
 	@Override
 	public List<GroupJoinRequest> getGroupAllRequest(String token) {
-		
 		return groupJoinRequestService.getGroupAllRequest(
 				userService.findByEmailId(
 						jwtUtil.extractUsername(token)).getId());
 	}
-	
-	
+	@Override
+	public GroupJoinRequest approveRequest(String requestId, String token) {
+		GroupJoinRequest groupJoinRequest = groupJoinRequestService.findByRequestId(requestId);
+		groupJoinRequest.setStatus(GroupJoinRequestStatus.APPROVE);
+		Group g = groupDao.makeMemberOfGroup(groupJoinRequest.getFrom().getId(),groupJoinRequest.getGid().getId(),token);
+		groupJoinRequest.setGid(g);
+		return groupJoinRequestService.updateJoinRequest(groupJoinRequest);
+	}
+	@Override
+	public GroupJoinRequest cancelRequest(String requestId, String token) {
+		GroupJoinRequest groupJoinRequest = groupJoinRequestService.findByRequestId(requestId);
+		groupJoinRequest.setStatus(GroupJoinRequestStatus.CANCEL);
+		return groupJoinRequestService.updateJoinRequest(groupJoinRequest);
+	}
 }

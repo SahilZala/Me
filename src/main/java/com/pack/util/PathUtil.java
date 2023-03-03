@@ -10,5 +10,7 @@ public class PathUtil {
 	public static final String GET_GROUP_OF_USER = "/user/group/my";
 	public static final String GET_GROUP_NOT_USER = "/user/group/not_my";
 	public static final String PUSH_JOIN_REQUEST = "/user/group/push_join_request";
-	public static final String GET_GROUP_ALL_REQUEST = "/user/group/get_gropup_all_request";
+	public static final String GET_GROUP_ALL_REQUEST = "/user/group/get_group_all_request";
+	public static final String APPROVE_REQUEST = "/user/group/request/approve";
+	public static final String CANCEL_REQUEST = "/user/group/request/cancel";
 }
