@@ -24,6 +24,7 @@ public class CrateUserController {
 	@PostMapping("/create")
 	public ResponseEntity<User> createNewUser(@Valid @RequestBody User u) {
 		u.setId(UtilMethods.generateRandomeNumber());
+		u.setUsername(u.getId());
 		User user = userService.createNewUser(u);
 		return new ResponseEntity<>(user,HttpStatus.OK);
 	}

@@ -13,4 +13,6 @@ public class PathUtil {
 	public static final String GET_GROUP_ALL_REQUEST = "/user/group/get_group_all_request";
 	public static final String APPROVE_REQUEST = "/user/group/request/approve";
 	public static final String CANCEL_REQUEST = "/user/group/request/cancel";
+	public static final String GET_USER = "/user/get";
 }
+
